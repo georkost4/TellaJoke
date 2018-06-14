@@ -13,6 +13,7 @@ import com.udacity.gradle.builditbigger.R;
 
 /**
  * A placeholder fragment containing a simple view.
+ * This view contains also ads
  */
 public class MainActivityFragment extends Fragment {
 

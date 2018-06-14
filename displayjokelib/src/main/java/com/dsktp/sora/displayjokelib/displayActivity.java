@@ -14,7 +14,7 @@ import android.widget.TextView;
  */
 public class displayActivity extends AppCompatActivity {
 
-
+    public static final String JOKE_BUNDLE_KEY = "joke";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +23,7 @@ public class displayActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        String joke = bundle.getString("joke");
+        String joke = bundle.getString(JOKE_BUNDLE_KEY);
 
         TextView textView = findViewById(R.id.tv_joke);
 

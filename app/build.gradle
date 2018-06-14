@@ -57,7 +57,9 @@ dependencies {
     implementation 'com.android.support:customtabs:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
     //end of mixed version libraries
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+
+    //implement only for the free version this dependency
+    freeImplementation 'com.google.android.gms:play-services-ads:15.0.1'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
@@ -65,8 +67,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.12'
-    //java library dependancy
+    //java library dependency
     implementation project(':jokeLib')
-    //android library dependancy
+    //android library dependency
     implementation project(':displayjokelib')
 }

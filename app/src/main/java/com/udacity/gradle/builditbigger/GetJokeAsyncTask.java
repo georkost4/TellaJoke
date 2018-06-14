@@ -13,6 +13,7 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
+import com.udacity.gradle.builditbigger.backend.myApi.model.MyBean;
 
 import java.io.IOException;
 
@@ -22,14 +23,14 @@ import java.io.IOException;
  * The name of the project is TellaJoke and it was created as part of
  * UDACITY ND programm.
  */
-public class GetJokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class GetJokeAsyncTask extends AsyncTask<Context, Void, String> {
 
 
     private static MyApi myApiService = null;
     private Context context;
 
     @Override
-    protected String doInBackground(Pair<Context, String>... params) {
+    protected String doInBackground(Context ... params) {
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -48,12 +49,15 @@ public class GetJokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, Str
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        String name = params[0].second;
+        context = params[0];
 
-        try {
-            return myApiService.sayHi(name).execute().getData();
-        } catch (IOException e) {
+
+        try
+        {
+            return myApiService.showJoke().execute().getData();
+        }
+        catch (IOException e)
+        {
             return e.getMessage();
         }
     }
@@ -65,7 +69,7 @@ public class GetJokeAsyncTask extends AsyncTask<Pair<Context, String>, Void, Str
         Intent startDisplayActivity = new Intent(context,displayActivity.class);
 
         Bundle bundle = new Bundle();
-        bundle.putString("joke", result);
+        bundle.putString(displayActivity.JOKE_BUNDLE_KEY, result);
         startDisplayActivity.putExtras(bundle);
         context.startActivity(startDisplayActivity);
     }
