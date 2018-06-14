@@ -13,7 +13,6 @@ buildscript {
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.3"
-
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 19
@@ -23,17 +22,34 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "demo"
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+        }
+    }
+
+    sourceSets {
+        paidDebug {
+            java.srcDirs = ['src/paidDebug/java', 'src/paidDebug/java/com/udacity/gradle/builditbigger']
+        }
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     //start of mixed version libraries
@@ -45,15 +61,12 @@ dependencies {
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
-
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     testImplementation 'junit:junit:4.12'
-
     //java library dependancy
-    implementation project(":jokeLib")
+    implementation project(':jokeLib')
     //android library dependancy
-    implementation project(":displayjokelib")
+    implementation project(':displayjokelib')
 }
