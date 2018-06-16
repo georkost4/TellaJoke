@@ -7,11 +7,11 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The joke is the followin" />
+        android:text="@string/display_activity_text_label" />
 
     <TextView
         android:id="@+id/tv_joke"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/display_activity_text_value" />
 </LinearLayout>

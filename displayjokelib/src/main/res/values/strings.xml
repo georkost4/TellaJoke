@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">displayJokelib</string>
+    <string name="display_activity_text_label">The joke is the followin</string>
+    <string name="display_activity_text_value">null</string>
 </resources>

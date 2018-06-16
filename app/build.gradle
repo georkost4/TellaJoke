@@ -68,7 +68,7 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
     //java library dependency
-    implementation project(':jokeLib')
-    //android library dependency
+//    implementation project(':jokeLib')//todo remove this
+//    //android library dependency
     implementation project(':displayjokelib')
 }
